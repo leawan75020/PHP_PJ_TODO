@@ -64,7 +64,7 @@ class UserController
     $userModel = new UserModel($this->email,$this->password);
     
     $userModel->addToDB();
-    var_dump( $this->email);
+    
 
     }
 
@@ -120,7 +120,11 @@ class UserController
 
       //enregistrer les info de user afin de creer sa session
       $this->id = $userTab['id'];
-      $this->avatarURL = $userTab['avatar'];
+      if ($userTab['avatarURL'] == null){
+            $this->avatarURL = "./images/users/profil-avatar.jpg";
+         }else{
+            $this->avatarURL = $userTab['avatarURL'];
+        }
       $this->role = $userTab['role'];
 
 

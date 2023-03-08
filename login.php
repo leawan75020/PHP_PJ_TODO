@@ -17,6 +17,21 @@
         }
     }
 
+
+    if(isset($_GET['connexion'])){
+      if(isset($_GET['emailError'])){
+            $connexionEmailError = $_GET['emailError'] === "InputInvalid" ? "Email incorrecte" : "Email n'existe pas!";
+        }
+
+        if(isset($_GET['passwordError'])){
+            $connexionPasswordError = $_GET['passwordError'] === "InputInvalid" ? "Mot de passe trop court" : "Mauvais mot de passe";
+        }
+    
+    
+    }
+
+
+
 ?>
 
 
@@ -61,8 +76,19 @@
     <section>
       <h2>Connexion</h2>
       <form action="routes/signin.php" method="post">
-        <input type="email" name="email" placeholder="exemple@gmail.com" />
-        <input type="password" name="password" placeholder="Mot De Passe">
+        <input class="<?= $connexionEmailError !== "" ? "inputError" : "" ?>" type="text" name="email"
+          placeholder="exemple@gmail.com" />
+
+        <p class="error">
+          <?= $connexionEmailError ?>
+        </p>
+
+        <input class="<?= $connexionPasswordError !== "" ? "inputError" : "" ?>" type="password" name="password"
+          placeholder="Mot De Passe" />
+
+        <p class="error">
+          <?= $connexionPasswordError ?>
+        </p>
 
         <button>Valider</button>
       </form>
