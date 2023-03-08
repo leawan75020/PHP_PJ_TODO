@@ -1,3 +1,8 @@
+<?php 
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +30,7 @@
     </section>
     <section>
       <h2> Connexion </h2>
-      <form action="routes/signup.php" method="POST">
+      <form action="routes/signin.php" method="POST">
         <input type="email" name="email" placeholder="email">
         <input type="password" name="password" placeholder="password">
 

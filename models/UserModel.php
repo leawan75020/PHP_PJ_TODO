@@ -37,6 +37,12 @@ class UserModel extends DB
     //recuperer les info retournées par la requete
     $userFromDB= $stmt ->fetch(PDO::FETCH_ASSOC);//[email:lea@gmail.com,password: mdp]
 
+    //si la requete ne retourner rien 0
+    if(is_bool($userFromDB)){//retourne vrai si c'est un boolean
+      return [];
+
+    }
+
     return $userFromDB;
 
   }

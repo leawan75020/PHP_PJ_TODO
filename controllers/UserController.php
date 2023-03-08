@@ -57,6 +57,27 @@ class UserController
      * @return self
      */
 
+     public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+
     public function setPassword($password){
       $this->password = $password;
       return $this;
@@ -65,28 +86,98 @@ class UserController
     function exist()
     {
 
-    //
     $userModel = New UserModel($this->email,$this->password);
+        //recup le tableau des info de user
+    //user tab contient le tableau des info du user et fetch les cherchers
 
     $userTab = $userModel ->fetch();
     var_dump($userTab);
 
-
+    // //si le tableau est vide donc le user n'exist pas
     if(count($userTab) === 0){
       return false;
-    }else{
+    }else{ // cas ou user exist bel et bien
+
+      //enregistrer les info de user afin de creer sa session
       $this->id = $userTab['id'];
       $this->avatarURL = $userTab['avatar'];
       $this->role = $userTab['role'];
 
 
       return true;
+    };
     }
     
+    function isPasswordCorrect(){
 
+      $userModel = New UserModel($this->email,$this->password);
+        //recup le tableau des info de user
+    //user tab contient le tableau des info du user et fetch les cherchers
 
+    $userTab = $userModel ->fetch();
     
+    return $userTab['password'] === $this->password;
+
+    }
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
     }
 
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
-}
+        return $this;
+    }
+
+    /**
+     * Get the value of avatarURL
+     */ 
+    public function getAvatarURL()
+    {
+        return $this->avatarURL;
+    }
+
+    /**
+     * Set the value of avatarURL
+     *
+     * @return  self
+     */ 
+    public function setAvatarURL($avatarURL)
+    {
+        $this->avatarURL = $avatarURL;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of role
+     */ 
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @return  self
+     */ 
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    }  
+    
