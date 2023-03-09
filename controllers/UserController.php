@@ -3,6 +3,7 @@
 
 
 include_once $_SERVER['DOCUMENT_ROOT']."/PHPcours/TODO/models/UserModel.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/PHPcours/TODO/controllers/TodoController.php";
 
 
 class UserController
@@ -12,6 +13,9 @@ class UserController
     private $id;
     private $avatarURL;
     private $role;
+
+
+    private $userModel;
     
 
     private const MIN_PASSWORD_LENGTH =6;
@@ -20,6 +24,8 @@ class UserController
     {
       $this->email = $email;
       $this->password = $password;
+
+      $this->userModel= new UserModel($email,$password);
      
     }
 
@@ -143,6 +149,29 @@ class UserController
     return $userTab['password'] === $this->password;
 
     }
+
+
+    static function createUserFromId($id){
+
+          $userFromDB = UserModel::fetchByID($id);
+          $controller = new self($userFromDB['email'], $userFromDB['password']);
+          $controller -> id = $id;
+          $controller -> role = $userFromDB['role'];
+          $controller -> avatarURL = $userFromDB['avatarURL'];
+
+          return $controller;
+      }
+
+
+      function saveImage($avatar){
+          $this-> userModel-> saveImageToDB($avatar);
+          return $avatar;
+      }
+
+      function addTodo($todo){
+            $todoController = new TodoController($todo, $this->id);
+            $todoController->addTodo();
+        }  
     /**
      * Get the value of id
      */ 

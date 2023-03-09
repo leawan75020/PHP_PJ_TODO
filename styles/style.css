@@ -62,3 +62,13 @@ button {
 .inputError {
   border: 1ps solid red;
 }
+
+#avatar {
+  width: 200px;
+
+  height: 200px;
+
+  object-fit: cover;
+
+  border-radius: 100%;
+}
