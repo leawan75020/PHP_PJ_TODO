@@ -26,7 +26,10 @@ class TodoController
         $this->isDone = $todoTab['isDone'];
 
     }
-
+    
+    static function fetchAll($auteurId){
+        return TodoModel::fetchAll($auteurId);
+    }
 
 
 }

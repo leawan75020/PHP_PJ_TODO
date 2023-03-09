@@ -1,7 +1,9 @@
-<?php 
-session_start();
-
+<?php
+    session_start();
+    include_once $_SERVER['DOCUMENT_ROOT']."/PHPcours/TODO/controllers/UserController.php";
+    $userController = UserController::createUserFromId($_SESSION['id']);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +40,18 @@ include_once "./components/navbar.php"
       <input type="text" name="todo" placeholder="Ajouter une tache" />
       <button>Ajouter +</button>
     </form>
+    <i class="bi bi-check2-all"></i>
+    <?php foreach($userController->getTodos() as $key => $todoTab):?>
+    <div class='todo <?= ($todoTab['isDone']? "todoDone" : "todoNotDone") ?>'>
+      <p> <?= $todoTab["contenu"]?></p>
+
+    </div>
+
+
+
+
+
+    <?php endforeach?>
   </section>
 
 
