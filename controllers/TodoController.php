@@ -34,6 +34,10 @@ class TodoController
     static function validateTodo($todoId){
         return TodoModel::updateIsDone($todoId);
     }
+    static function removeTodo($todoId){
+        return TodoModel::removeTodo($todoId);
+    }
+
 
 
 

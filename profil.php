@@ -42,8 +42,8 @@ include_once "./components/navbar.php"
     </form>
     <i class="bi bi-check2-all"></i>
     <?php foreach($userController->getTodos() as $key => $todoTab):?>
-    <div class='todo <?= ($todoTab['isDone']? "todoDone" : "todoNotDone") ?>'>
-      <p> <?= $todoTab["contenu"]?></p>
+    <div class='todo '>
+      <h4 class='<?= ($todoTab['isDone']? "todoDone" : "todoNotDone") ?>'> <?= $todoTab["contenu"]?></h4>
 
       <div class="todo-controls">
         <?php if(!$todoTab['isDone']):?>
@@ -52,6 +52,12 @@ include_once "./components/navbar.php"
             <img src="./images/check.svg">
           </button>
         </form>
+        <form class="validateForm" action="routes/removeTodo.php" method="GET">
+          <button type="submit" name="remove" value="<?= $todoTab['id']?>">
+            <img src="./images/remove.svg">
+          </button>
+        </form>
+
 
         <?php endif?>
       </div>

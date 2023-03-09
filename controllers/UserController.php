@@ -246,6 +246,10 @@ class UserController
      function validateTodo($todoID){
         TodoController::validateTodo($todoID);
     }
+    
+     function removeTodo($todoID){
+        TodoController::removeTodo($todoID);
+    }
 } 
     
     

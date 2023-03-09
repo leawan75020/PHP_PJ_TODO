@@ -59,6 +59,14 @@ class TodoModel extends DB
         $stmt ->execute();
 
     }
+
+    static function removeTodo($id){
+        $connect = DB::getConnection();
+        $stmt= $connect->getConnect() ->prepare('DELETE FROM todos WHERE id = ? ');
+        $stmt->bindParam(1 , $id);
+        $stmt ->execute();
+
+    }
 }
 
 ?>
