@@ -18,6 +18,9 @@ $user = new UserController($_POST['email'], $_POST['password']);
         }
         $user->signupUser();
 
+
+        header('Location: /PHPcours/TODO/login.php');
+
     }
     else{ //cas ou l'email ou le mdp ne sont pas valides
         $returnData= $user->getErrors();

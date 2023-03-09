@@ -45,6 +45,16 @@ include_once "./components/navbar.php"
     <div class='todo <?= ($todoTab['isDone']? "todoDone" : "todoNotDone") ?>'>
       <p> <?= $todoTab["contenu"]?></p>
 
+      <div class="todo-controls">
+        <?php if(!$todoTab['isDone']):?>
+        <form class="validateForm" action="routes/validateTodo.php" method="GET">
+          <button type="submit" name="validate" value="<?= $todoTab['id']?>">
+            <img src="./images/check.svg">
+          </button>
+        </form>
+
+        <?php endif?>
+      </div>
     </div>
 
 

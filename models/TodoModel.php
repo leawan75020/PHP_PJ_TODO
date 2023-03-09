@@ -49,6 +49,16 @@ class TodoModel extends DB
         $userFromDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $userFromDB;
     }
+
+     static function updateIsDone($id){
+        $active = true;
+        $connect = DB::getConnection();
+        $stmt= $connect->getConnect() ->prepare('UPDATE todos SET isDone= ? WHERE id =? ');
+        $stmt->bindParam(1 , $active);
+        $stmt->bindParam(2 , $id);
+        $stmt ->execute();
+
+    }
 }
 
 ?>

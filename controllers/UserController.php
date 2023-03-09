@@ -118,7 +118,8 @@ class UserController
     //user tab contient le tableau des info du user et fetch les cherchers
 
     $userTab = $userModel ->fetch();
-    var_dump($userTab);
+    
+    
 
     // //si le tableau est vide donc le user n'exist pas
     if(count($userTab) === 0){
@@ -242,6 +243,9 @@ class UserController
         return $this->todos;
     }
 
+     function validateTodo($todoID){
+        TodoController::validateTodo($todoID);
+    }
 } 
     
     
